@@ -17,9 +17,12 @@
     <div class="jumbotron">
         <h1>Hello</h1>
 
-        <tr th:each="task : ${tasks}">
-            <td th:text="${task.name}">1</td>
-        </tr>
+        <ul>
+            <tr th:each="task : ${tasks}">
+                <li th:text="${task.name} + ': ' + ${task.detailedDescription} + '. Created at ' +
+                ${#temporals.format(task.creationTime, 'dd/MMM/yyyy HH:mm')}">1</li>
+            </tr>
+        </ul>
 
     </div>
 </div>

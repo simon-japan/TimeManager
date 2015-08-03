@@ -18,6 +18,7 @@ public interface TaskMapper {
     @Select("SELECT * FROM task")
     public List<Task> getAllTasks();
 
-    @Insert("INSERT INTO task (name) values(#{name})")
+    @Insert("INSERT INTO task (name, detailedDescription, creationTime) " +
+            "values(#{name}, #{detailedDescription}, #{creationTime})")
     public int addTask(Task task);
 }

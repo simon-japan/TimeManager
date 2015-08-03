@@ -29,6 +29,7 @@ public class DatabaseConfig {
     public SqlSessionFactory sqlSessonFactory(DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
+        sessionFactory.setTypeHandlersPackage("com.github.javaplugs.mybatis");
         return sessionFactory.getObject();
     }
 
