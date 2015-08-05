@@ -1,16 +1,21 @@
 package backend.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by simon on 8/1/15.
  */
-public class Task {
+public class Task implements Comparable<Task>{
 
     private int id;
     private String name;
     private String detailedDescription;
     private LocalDateTime creationTime;
+    private final List<Task> subTasks = new ArrayList<>();
+    private int priority;
+    private Status status;
 
     public Task() {}
 
@@ -52,4 +57,25 @@ public class Task {
         this.name = name;
     }
 
+    public void addSubTask(Task subTask) {
+        this.subTasks.add(subTask);
+    }
+
+    public List<Task> getAllSubTasks() {
+        return this.subTasks;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        int otherTaskPriority = o.getPriority();
+        return otherTaskPriority - priority;
+    }
 }
