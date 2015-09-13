@@ -19,11 +19,17 @@ public class TaskService {
     private TaskMapper taskMapper;
 
     @Transactional(readOnly = false)
-    public int addTask(Task taskToAdd) { return taskMapper.addTask(taskToAdd); }
+    public void addTask(Task taskToAdd) { taskMapper.addTask(taskToAdd); }
 
     @Transactional(readOnly = true)
-    public Task getTask(int taskId) { return taskMapper.getTask(taskId); }
+    public Task getTask(long taskId) { return taskMapper.getTask(taskId); }
 
     @Transactional(readOnly = true)
     public List<Task> findAll() { return taskMapper.getAllTasks(); }
+
+    @Transactional(readOnly = false)
+    public void addSubTask(Task parent, Task child) { taskMapper.addSubtask(parent, child); }
+
+    @Transactional(readOnly = true)
+    public List<Task> findAllSubtasks(Task parent) { return taskMapper.getSubtasks(parent); }
 }

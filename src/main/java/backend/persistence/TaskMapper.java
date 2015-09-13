@@ -1,8 +1,6 @@
 package backend.persistence;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import backend.domain.Task;
 
@@ -13,12 +11,21 @@ import java.util.List;
  */
 public interface TaskMapper {
     @Select("SELECT * FROM task WHERE id = #{taskId}")
-    public Task getTask(@Param("taskId") int taskId);
+    public Task getTask(@Param("taskId") long taskId);
 
     @Select("SELECT * FROM task")
     public List<Task> getAllTasks();
 
-    @Insert("INSERT INTO task (name, detailedDescription, creationTime, subtaskIds, priority) " +
-            "values(#{name}, #{detailedDescription}, #{creationTime}, #{subtaskIds}, #{priority})")
-    public int addTask(Task task);
+    @Insert("INSERT INTO task (name, detailedDescription, creationTime, priority) " +
+            "values(#{name}, #{detailedDescription}, #{creationTime}, #{priority})")
+    @Options(useGeneratedKeys=true)
+    public void addTask(Task task);
+
+    @Insert("INSERT INTO taskSubtask (parentId, childId) values(parent.id, child.id)")
+    public void addSubtask(Task parent, Task child);
+
+    @Select("SELECT * FROM task t WHERE id in " +
+            "(SELECT s.childId FROM taskSubtask s WHERE s.parentId = t.id)")
+    public List<Task> getSubtasks(Task parent);
+
 }

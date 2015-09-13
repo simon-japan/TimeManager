@@ -6,3 +6,9 @@ create table IF NOT EXISTS task (
   subtaskIds INTEGER[],
   priority INTEGER
 );
+
+create table IF NOT EXISTS taskSubtask (
+  id SERIAL PRIMARY KEY,
+  parentId SERIAL REFERENCES task(id),
+  childId SERIAL REFERENCES task(id)
+);

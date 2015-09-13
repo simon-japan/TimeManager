@@ -25,12 +25,12 @@ public class Application implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Adding Task");
+/*        System.out.println("Adding Task");
         int taskId = taskService.addTask(new Task("Do stuff", "Something or other"));
         taskService.addTask(new Task("Do the other stuff", "yeah that thing"));
         System.out.println("Getting Task");
         Task task = taskService.getTask(taskId);
-        System.out.println("Got Task: " + task.getName());
+        System.out.println("Got Task: " + task.getName());*/
     }
 
     @SuppressWarnings("SpringJavaAutowiringInspection")
