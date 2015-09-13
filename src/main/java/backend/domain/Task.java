@@ -23,6 +23,7 @@ public class Task implements Comparable<Task>{
         this.name = name;
         this.detailedDescription = detailedDescription;
         this.creationTime = LocalDateTime.now();
+        this.priority = 5;
     }
 
     public String getDetailedDescription() {
