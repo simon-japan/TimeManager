@@ -32,13 +32,4 @@ public class TaskTest {
         Assert.assertEquals(subTasks.size(), 0);
     }
 
-    @Test
-    public void compareTo_vsLowerPriorityTask_returnsNegative() {
-        myTask.setPriority(1);
-        Task lowerPrioTask = new Task();
-        lowerPrioTask.setPriority(2);
-        int comparison = myTask.compareTo(lowerPrioTask);
-        Assert.assertTrue(comparison > 0);
-    }
-
 }

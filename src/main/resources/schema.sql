@@ -9,6 +9,6 @@ create table IF NOT EXISTS task (
 
 create table IF NOT EXISTS taskSubtask (
   id SERIAL PRIMARY KEY,
-  parentId SERIAL REFERENCES task(id),
-  childId SERIAL REFERENCES task(id)
+  parentId SERIAL REFERENCES task(id) ON DELETE CASCADE,
+  childId SERIAL REFERENCES task(id) ON DELETE CASCADE
 );

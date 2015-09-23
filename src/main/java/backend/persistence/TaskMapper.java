@@ -21,11 +21,11 @@ public interface TaskMapper {
     @Options(useGeneratedKeys=true)
     public void addTask(Task task);
 
-    @Insert("INSERT INTO taskSubtask (parentId, childId) values(parent.id, child.id)")
-    public void addSubtask(Task parent, Task child);
+    @Insert("INSERT INTO taskSubtask (parentId, childId) values(#{parent.id}, #{child.id})")
+    public void addSubtask(@Param("parent") Task parent, @Param("child") Task child);
 
     @Select("SELECT * FROM task t WHERE id in " +
-            "(SELECT s.childId FROM taskSubtask s WHERE s.parentId = t.id)")
+            "(SELECT s.childId FROM taskSubtask s WHERE s.parentId = #{id})")
     public List<Task> getSubtasks(Task parent);
 
     @Delete("DELETE FROM task WHERE id = #{id}")
