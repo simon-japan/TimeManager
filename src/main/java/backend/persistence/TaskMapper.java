@@ -28,4 +28,19 @@ public interface TaskMapper {
             "(SELECT s.childId FROM taskSubtask s WHERE s.parentId = t.id)")
     public List<Task> getSubtasks(Task parent);
 
+    @Delete("DELETE FROM task WHERE id = #{id}")
+    public void deleteTask(Task task);
+
+    @Update("<script>" +
+            "UPDATE task " +
+                "<set>" +
+                    "<if test='name!=null'>name=#{name},</if>" +
+                    "<if test='detailedDescription!=null'>detailedDescription=#{detailedDescription},</if>" +
+                    "<if test='creationTime!=null'>creationTime=#{creationTime},</if>" +
+                   "<if test='priority!=null'>priority=#{priority},</if>" +
+                "</set>" +
+            "WHERE id = #{id}" +
+            "</script>")
+    public void updateTask(Task task);
+
 }

@@ -16,6 +16,7 @@ public class IndexController {
     @Autowired
     private TaskService taskService;
 
+    //Todo: UI elements to do CRUD operations on tasks and subtasks, and sort & filter in different ways.
     @RequestMapping("/")
     String index(Model model) {
         model.addAttribute("tasks", taskService.findAll());

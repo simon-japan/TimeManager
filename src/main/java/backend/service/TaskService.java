@@ -28,8 +28,14 @@ public class TaskService {
     public List<Task> findAll() { return taskMapper.getAllTasks(); }
 
     @Transactional(readOnly = false)
+    public void deleteTask(Task task) { taskMapper.deleteTask(task); }
+
+    @Transactional(readOnly = false)
     public void addSubTask(Task parent, Task child) { taskMapper.addSubtask(parent, child); }
 
     @Transactional(readOnly = true)
     public List<Task> findAllSubtasks(Task parent) { return taskMapper.getSubtasks(parent); }
+
+    @Transactional(readOnly = false)
+    public void updateTask(Task task) { taskMapper.updateTask(task); }
 }

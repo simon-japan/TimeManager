@@ -7,12 +7,14 @@ import java.util.List;
 /**
  * Created by simon on 8/1/15.
  */
+//Todo: on second thoughts, probably we don't want comparisons between tasks to be always based on the same property.
 public class Task implements Comparable<Task>{
 
     private int id;
     private String name;
     private String detailedDescription;
     private LocalDateTime creationTime;
+    //TODO: how to represent subtasks at the domain object level?
     private final List<Task> subTasks = new ArrayList<>();
     private int priority;
     private Status status;
